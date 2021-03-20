@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet , Image , FlatList } from 'react-native';
+import { View, Text, StyleSheet , Image , FlatList , ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import yelp from '../api/yelp';
 
@@ -20,15 +20,21 @@ const ResultsShowScreen = () => {
   }
   
   return (
-    <View>
-    <Text>{result.name}</Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text style={styles.name}>{result.name}</Text>
+    <Text style={styles.text}>{result.rating} Stars  </Text>
+    <Text style={styles.text}>{result.review_count} Reviews </Text>
+      <Text style={styles.text}>{result.phone}</Text>
+      <ScrollView>
     <FlatList
         data={result.photos}
+        showsVerticalScrollIndicator={false}
         keyExtractor={photo => photo}
         renderItem={({ item }) => {
           return <Image style={styles.image} source={{ uri: item }} />;
         }}
       />
+      </ScrollView>
     </View>
   );
 };
@@ -40,11 +46,20 @@ const styles = StyleSheet.create({
   image: {
     height: 200,
     width: 300,
-    borderRadius: 4,
-    marginBottom: 5
+    borderRadius: 10,
+    marginBottom: 5,
+    marginTop: 10
+  },
+  text : {
+    fontSize: 20,
+    marginBottom :10,
+    marginTop: 10
   },
   name: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 20,
+    marginBottom :20,
+    marginTop: 20
   }
 });
 
