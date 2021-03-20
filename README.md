@@ -1,4 +1,4 @@
-## React-native
+## React-native : Restaurant Search App 
 
 expo-cli :
 npx expo-cli init food 
